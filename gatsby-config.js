@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: '.env',
+});
+
 const siteConfig = require('./site-config');
 
 module.exports = {
@@ -65,7 +69,7 @@ module.exports = {
         //
         // When you have generated your credentials, it's easiest to refer to them from an environment variable
         // and parse it directly:
-        credentials: JSON.parse(GOOGLE_SERVICE_ACCOUNT_CREDENTIALS),
+        credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS),
     
         // Simple node transformation during node sourcing can be achieved by implementing the following functions
         // - `filterNode`
