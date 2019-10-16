@@ -2,10 +2,6 @@ require('dotenv').config({
   path: '.env',
 });
 
-console.log(process.env.CLIENT_EMAIL)
-console.log(process.env.GATSBY_SPREADSHEET_ID)
-// console.log(process.env.PRIVATE_KEY)
-
 const siteConfig = require('./site-config');
 
 module.exports = {
@@ -76,8 +72,7 @@ module.exports = {
         // and parse it directly:
         credentials: {
           client_email: "sheets-pull@scd-sheets.iam.gserviceaccount.com",
-          // client_email: process.env.GATSBY_CLIENT_EMAIL,
-          private_key: process.env.PRIVATE_KEY.split('\n').join('\n'),
+          private_key: process.env.PRIVATE_KEY.split('\\n').join('\n'),
         },
     
         // Simple node transformation during node sourcing can be achieved by implementing the following functions
