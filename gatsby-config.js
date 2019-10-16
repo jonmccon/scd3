@@ -2,6 +2,10 @@ require('dotenv').config({
   path: '.env',
 });
 
+console.log(process.env.CLIENT_EMAIL)
+console.log(process.env.GATSBY_SPREADSHEET_ID)
+// console.log(process.env.PRIVATE_KEY)
+
 const siteConfig = require('./site-config');
 
 module.exports = {
@@ -44,6 +48,7 @@ module.exports = {
       options: {
         // The `spreadsheetId` is required, it is found in the url of your document:
         // https://docs.google.com/spreadsheets/d/<spreadsheetId>/edit#gid=0
+        // spreadsheetId: process.env.GATSBY_SPREADSHEET_ID,
         spreadsheetId: '1Ey4_VPD4-KcGG8WiNt7IDIVy4_m5hK8OzvrvFgHOKWY',
     
         // The `spreadsheetName` is recommended, but optional
@@ -69,7 +74,11 @@ module.exports = {
         //
         // When you have generated your credentials, it's easiest to refer to them from an environment variable
         // and parse it directly:
-        credentials: JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_CREDENTIALS),
+        credentials: {
+          client_email: "sheets-pull@scd-sheets.iam.gserviceaccount.com",
+          // client_email: process.env.GATSBY_CLIENT_EMAIL,
+          private_key: process.env.PRIVATE_KEY.split('\n').join('\n'),
+        },
     
         // Simple node transformation during node sourcing can be achieved by implementing the following functions
         // - `filterNode`
