@@ -6,7 +6,7 @@ import Title from 'components/title';
 import Gallery from 'components/gallery';
 import IOExample from 'components/io-example';
 import Modal from 'containers/modal';
-import sheetList from 'components/sheetList'
+import SheetList from 'components/sheetList';
 import { graphql } from 'gatsby';
 
 const Index = ({ data }) => (
@@ -16,10 +16,7 @@ const Index = ({ data }) => (
         {data.homeJson.content.childMarkdownRemark.rawMarkdownBody}
       </Title>
 
-      <sheetList>
-      {data.allSheetProduction.nodes.studioName}
-
-      </sheetList>
+      <SheetList>{data.allSheetProduction.nodes.studioName}</SheetList>
       
       
       {/* <Modal>
