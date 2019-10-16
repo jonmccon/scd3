@@ -6,6 +6,7 @@ import Title from 'components/title';
 import Gallery from 'components/gallery';
 import IOExample from 'components/io-example';
 import Modal from 'containers/modal';
+import sheetList from 'components/sheetList'
 import { graphql } from 'gatsby';
 
 const Index = ({ data }) => (
@@ -14,7 +15,14 @@ const Index = ({ data }) => (
       <Title as="h2" size="large">
         {data.homeJson.content.childMarkdownRemark.rawMarkdownBody}
       </Title>
-      <Modal>
+
+      <sheetList>
+      {data.allSheetProduction.nodes.studioName}
+
+      </sheetList>
+      
+      
+      {/* <Modal>
         <video
           src="https://i.imgur.com/gzFqNSW.mp4"
           playsInline
@@ -22,7 +30,7 @@ const Index = ({ data }) => (
           autoPlay
           muted
         />
-      </Modal>
+      </Modal> */}
     </Box>
     <Gallery items={data.homeJson.gallery} />
     <div style={{ height: '50vh' }} />
@@ -38,6 +46,14 @@ export default Index;
 
 export const query = graphql`
   query HomepageQuery {
+    allSheetProduction(sort: {fields: studioName, order: ASC}) {
+      nodes {
+        studioName
+        social
+        tags
+        url
+      }
+    }
     homeJson {
       title
       content {
